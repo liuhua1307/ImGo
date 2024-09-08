@@ -1,0 +1,53 @@
+syntax  ='proto3';
+
+package imgo;
+option go_package ='api';
+
+service User {
+  rpc Register(UserRegisterReq) returns (UserRegisterReply);
+  rpc Login(UserLoginReq)returns(UserLoginReply);
+  rpc GetUserInfo(UserGetUserInfoReq) returns(UserGetUserInfoReply);
+}
+
+
+message UserRegisterReq {
+    string UserName=1;
+    string PassWord=2;
+    UserInfo userInfo =3;
+}
+
+message UserInfo {
+    uint64 ID=1;
+    string Name=2;
+    uint32 Sex=3;
+    string PhoneNumber=4;
+}
+
+message  UserRegisterReply{
+    string msg=1;
+    uint32 code=2;
+}
+
+message  UserLoginReq{
+  string Credential=1; //用于登录的凭证
+  string Password=2;
+  uint32 Status=3;
+}
+
+message UserLoginReply {
+  string Token =1;
+  string Message =2;
+}
+
+message UserGetUserInfoReq{
+  string Credential=1;
+}
+
+message  UserGetUserInfoReply{
+  UserInfo userInfo =1;
+}
+
+message UserMakeFriendWithIDReq{
+  uint64 OriID=1;
+  uint64 TargetID=2;
+}

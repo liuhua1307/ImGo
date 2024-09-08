@@ -1,0 +1,40 @@
+syntax ="proto3";
+
+package chat;
+
+option go_package='api';
+
+service Chat {
+   rpc Send(ChatSendReq) returns (ChatSendReply);
+   rpc GetMessageList(ChatGetMessageListReq) returns (ChatGetMessageListReply);
+}
+
+message ChatGetMessageListReq {
+    uint32 RoomId=1;
+    uint64 limit=2;
+}
+
+message Message{
+   uint32 RoomId=1;
+   string Time=2;
+   string Info=3;
+   uint32 ID=4;
+   bool   isReply=5;
+   uint32 ReplyId=6;
+}
+message   ChatGetMessageListReply{
+    repeated Message message=1;
+    uint32 Code=2;
+    string Msg=3;
+}
+
+message  ChatSendReq{
+   uint32 FromID=1;
+   uint32 ToID=2;
+   string  Msg=3;
+}
+
+message ChatSendReply{
+   uint32  code=1;
+   string  msg=2;
+}

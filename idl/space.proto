@@ -1,0 +1,41 @@
+syntax ='proto3';
+
+package space;
+
+option go_package='api';
+
+service  Space{
+  rpc GetFocusDynamic(SpaceGetFocusDynamicReq) returns (SpaceGetFocusDynamicReply);
+  rpc PushDynamic(SpacePushDynamicReq) returns (SpacePushDynamicReply);
+}
+
+message SpaceGetFocusDynamicReq{
+        uint64 TargetID=1;
+        int64 limit=2;
+}
+
+message SpaceGetFocusDynamicReply{
+      repeated Dynamic dynamic=1;
+      int64  time=2;
+}
+
+
+message Dynamic {
+     uint64  ID=1;
+     uint64 AuthorId=2;
+     string  title=3;
+     string  info=4;
+     repeated  string ImageUrl=5;
+     repeated uint64 commentList=6;
+}
+
+message SpacePushDynamicReq{
+  string  title=3;
+  string  info=4;
+  repeated  string ImageUrl=5;
+}
+
+message SpacePushDynamicReply{
+  string msg=1;
+  string code=2;
+}

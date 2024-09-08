@@ -1,0 +1,18 @@
+syntax ='proto3';
+
+package  sms;
+
+option go_package="api";
+
+
+service Sms {
+  rpc  GetSMSCode(SmsGetCodeReq) returns (SmsGetCodeReply);
+}
+
+message SmsGetCodeReq {
+     string  PhoneNumber=1;
+}
+
+message SmsGetCodeReply{
+     uint64  SmsCodeId=1;
+}
