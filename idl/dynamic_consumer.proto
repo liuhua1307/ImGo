@@ -1,0 +1,21 @@
+syntax ='proto3';
+
+package  DynamicConsumer;
+
+option go_package='api';
+
+
+service Consumer{
+  rpc PushDynamic(ConsumerPushDynamicReq) returns (ConsumerPushDynamicReply);
+}
+
+message ConsumerPushDynamicReq{
+  string  title=3;
+  string  info=4;
+  repeated  string ImageUrl=5;
+}
+
+message ConsumerPushDynamicReply{
+  string msg=1;
+  string code=2;
+}
